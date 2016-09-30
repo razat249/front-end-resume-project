@@ -1,199 +1,178 @@
-
 var bio = {
-	"name" : "RAJAT PATWA",
-	"role" : "DEVELOPER",
-	"contacts" : {
-		"mobile" : "+917597305718",
-		"email" : "razat249@gmail.com",
-		"linkedin" : "linkedin.com/in/rajatpatkar ",
-		"github" : "github.com/razat249",
-		"location" : "India"
-	},
-	"welcomeMessage" : "Thanks for your intrest",
-	"biopic" : 'images/fry.jpg',
-	"skills" : ["Python", "JAVA", "Front end developer", "Full stack developer"]
-}
+    "name": "Rajat Patwa",
+    "role": "Software Engineer",
+    "contacts": {
+        "mobile": "+91 (759) 7305718",
+        "email": "rajat249@gmail.com",
+        "github": "razat249",
+        "twitter": "@razat_patkar",
+        "location": "Baran, India"
+    },
+    "welcomeMessage": "Nice to see you :)",
+    "skills": [
+        "Software Engineer", "Front-End Developer", "Full-Stack Developer", "Programmer"
+    ],
+    "biopic": "images/hero.jpg",
+    display: function() {
+        var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
+        $("#header").prepend(formattedRole);
+        var formattedName = HTMLheaderName.replace('%data%', bio.name);
+        $("#header").prepend(formattedName);
+
+        var formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location)
+        var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+        var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+        var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+        var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+        $("#topContacts").prepend(formattedLocation, formattedTwitter, formattedGithub, formattedEmail, formattedMobile);
+        $("#footerContacts").prepend(formattedLocation, formattedTwitter, formattedGithub, formattedEmail, formattedMobile);
+
+        var WelcomeMessage = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
+        $("#header").append(WelcomeMessage);
+        var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
+        $("#header").append(formattedPic);
+
+        if (bio.skills.length > 0) {
+            $("#header").append(HTMLskillsStart);
+
+            bio.skills.forEach(function(skill) {
+                formattedskill = HTMLskills.replace("%data%", skill);
+                $("#skills").append(formattedskill);
+            });
+        }
+    }
+};
 
 var education = {
-	"schools":  [
-	{
-			"name" : "Govt Engineering College",
-			"city" : "Bikaner",
-			"degree" : "BTech",
-			"branch" : "CS",
-			"dates" : "August 2013 - April 2017"
-		},
-	],
-	"onlineCourses" : [
-		{
-			"title" : "Intro to computer science",
-			"school" : "Udacity",
-			"dates" : "May 2015 to July 2015",
-			"url" : "http://udacity.com"
-		},
+    "schools": [{
+            "name": "Govt Engineering College Bikaner",
+            "degree": "BTech",
+            "dates": "July 2013 - May 2017",
+            "location": "Bikaner, India",
+            "majors": ["Computer Science"],
+            "url": "https://www.ecb.ac.in"
+        }, {
+            "name": "Udacity Front End Nanodegree",
+            "degree": "Nanodegree",
+            "majors": ["Computer Science"],
+            "dates": "September 2016",
+            "location": "Mountain View, CA",
+            "url": "https://www.udacity.in"
 
-		{
-			"title" : "Programming Foundation with Python",
-			"school" : "Udacity",
-			"dates" : "July 2015 to August 2015",
-			"url" : "http://udacity.com"
-		},
+        }
 
-		{
-			"title" : "Web Development",
-			"school" : "Udacity",
-			"dates" : "August 2015 to Septamber 2015",
-			"url" : "http://udacity.com"
-		},
+    ],
+    "onlineCourses": [{
+        "title": "Algorithms and Data Structures",
+        "school": "Interviewbit",
+        "dates": "2016",
+        "url": "http://www.Interviewbit.com"
+    }],
+    display: function() {
+        education.schools.forEach(function(school) {
+            $("#education").append(HTMLschoolStart);
+            var formattedName = HTMLschoolName.replace('%data%', school.name);
+            $(".education-entry:last").append(formattedName);
+            var formattedDates = HTMLschoolDates.replace('%data%', school.dates);
+            $(".education-entry:last").append(formattedDates);
+            var formattedLocation = HTMLschoolLocation.replace('%data%', school.location);
+            $(".education-entry:last").prepend(formattedLocation);
+            var formattedDegree = HTMLschoolDegree.replace('%data%', school.degree);
+            $(".education-entry:last").append(formattedDegree);
+            var formattedDegree = HTMLschoolMajor.replace("%data%", school.majors);
+            $(".education-entry:last").append(formattedDegree);
 
-		{
-			"title" : "Front-End Developer",
-			"school" : "Udacity",
-			"dates" : "2015",
-			"url" : "http://udacity.com"
-		},
-		{
-			"title" : "full stack Developer",
-			"school" : "Udacity",
-			"dates" : "Septamber 2015 to December 2015",
-			"url" : "http://udacity.com"
-		}
-		
-	]
-}
+        });
+        education.onlineCourses.forEach(function(course) {
+            var formattedTitle = HTMLonlineTitle.replace("%data%", course.title);
+            $(".education-entry:last").append(formattedTitle);
+            var formattedSchool = HTMLonlineSchool.replace("%data%", course.school);
+            $(".education-entry:last").append(formattedSchool);
+            var formattedDates = HTMLonlineDates.replace("%data%", course.dates);
+            $(".education-entry:last").append(formattedDates);
+            var formattedURL = HTMLonlineURL.replace("%data%", course.url);
+            $(".education-entry:last").append(formattedURL);
+        });
+    }
+};
 
 var work = {
-	"jobs" : [
-		{
-			"employer" : "Web Developer",
-			"title" : "Development Leader",
-			"dates" : "2014-2015",
-			"location" : "Banglore",
-			"description" : "Some text here to update.Some text here to updateSome text here to updateSome text here to updateSome text here to updateSome text here ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text to updateSome text here to update"
-		},
-		{
-			"employer" : "Programmer",
-			"title" : "Software Engineer",
-			"dates" : "2015-2017",
-			"location" : "Mumbai",
-			"description" : "Some text here to updateSome text here to ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text ere to updateSome text here to updateSome text here to updateSome text here to updateSome text here to updateSome text updateSome text here to updateblah blahSome text here to updateSome text here to updateSome text here to updateSome text here to update blah"
-		}
-	]
-}
+    "jobs": [{
+        "employer": "CauseCode Technologies Pvt Ltd",
+        "title": "Software Engineering Intern",
+        "dates": "Summer 2016",
+        "location": "Pune, India",
+        "description": `
+					- Worked as a software engineer intern with the technologies like JAVA, groovy on grails 3, AngularJS, ReactJS.
+					- Learned system design and how to build a scalable system. Also learned how to adapt different stacks.
+					- Designed and Implemented job board plugin for company's corporate site https://causecode.com. The plugin can be used to create, read, update and delete job posts. Server side of the plugin is build using groovy on grails. And the front end is build using Angular. The plugin follows REST api architecture. In this project I got learn insights of Grails and AngularJS.
+					- Ported some front end parts of company's corporate site from AngulaeJS to ReactJS. Here the front end is ported following the react-redux architecture. In this project I learned about design patterns used to build react-redux app.
+					- Added social share buttons to the company's blog and Google ReCaptcha to crm plugin. Also done some small improvements in the company's corporate site.
+			`
+    }, {
+        "employer": "GeeksforGeeks",
+        "title": "Campus Ambassador",
+        "dates": "2016-2017",
+        "location": "Bikaner, India",
+        "description": `
+					● Responsible for promoting Competitive Programming and Open Source Development in the campus.
+					● Responsible for organising different geeks classes and coding contests and leading the juniors.
+			`
+    }],
+    display: function() {
+        work.jobs.forEach(function(job) {
+            $("#workExperience").append(HTMLworkStart);
+            var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
+            var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
+            var formattedEmployerTitle = formattedEmployer + formattedTitle;
+            $(".work-entry:last").append(formattedEmployerTitle);
+            var formattedDates = HTMLworkDates.replace("%data%", job.dates);
+            $(".work-entry:last").append(formattedDates);
+            var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
+            $(".work-entry:last").append(formattedDescription);
+            var formattedLocation = HTMLworkLocation.replace("%data%", job.location);
+            $(".work-entry:last").prepend(formattedLocation);
+        });
+    }
+};
 
 var projects = {
-	"projects" : [
-		{
-			"title" : "Search Engine",
-			"dates" : 2016,
-			"description" : "Create a student search engine for help in find anything for a student online",
-			"images" : "images/197x148.gif"
-		},
-		{
-			"title" : "The Blog",
-			"dates" : 2016,
-			"description" : "Create a blog using google app engine",
-			"images" : "images/197x148.gif"
-		}
-	]
-}
+    "projects": [{
+        "title": "Student Search Engine",
+        "dates": "2016",
+        "description": "Create a student search engine for help in find anything for a student online",
+        "images": ["images/197x148.gif", "images/197x148.gif", "images/197x148.gif"]
+    }, {
+        "title": "WebApp",
+        "dates": "2016",
+        "description": "Create a WebApp And Android App",
+        "images": ["images/197x148.gif", "images/197x148.gif", "images/197x148.gif"]
+    }],
+    display: function() {
+        projects.projects.forEach(function(project) {
+            $("#projects").append(HTMLprojectStart);
 
-var formatted_role = HTMLheaderRole.replace("%data%",bio.role);
-$('#header').prepend(formatted_role);
+            var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
+            $(".project-entry:last").append(formattedTitle);
 
-var formatted_name = HTMLheaderName.replace("%data%",bio.name);
-$('#header').prepend(formatted_name);
+            var formattedDates = HTMLprojectDates.replace("%data%", project.dates);
+            $(".project-entry:last").append(formattedDates);
 
-var mobile_no = HTMLmobile.replace("%data%",bio.contacts.mobile);
-$('#topContacts').append(mobile_no);
+            var formattedDescription = HTMLprojectDescription.replace("%data%", project.description);
+            $(".project-entry:last").append(formattedDescription);
 
-var e = HTMLemail.replace("%data%",bio.contacts.email);
-$('#topContacts').append(e);
+            project.images.forEach(function(image) {
+                formattedImage = HTMLprojectImage.replace("%data%", image);
+                $(".project-entry:last").append(formattedImage);
+            });
+        });
+    }
+};
 
-var git = HTMLgithub.replace("%data%",bio.contacts.github);
-$('#topContacts').append(git);
-
-
-var linked_in = HTMLlinkedIn.replace("%data%",bio.contacts.linkedin);
-$('#topContacts').append(linked_in);
-
-var loc = HTMLlocation.replace("%data%",bio.contacts.location);
-$('#topContacts').append(loc);
-
-var msg = HTMLWelcomeMsg.replace("%data%",bio.welcomeMessage);
-$('#header').append(msg);
-
-var pic = HTMLbioPic.replace("%data%",bio.biopic);
-$('#header').append(pic);
-
-
-
-//missing if statement
-
-$('#header').append(HTMLskillsStart);
-
-var skill_1 = HTMLskills.replace("%data%",bio.skills[0]);
-$('#skills').append(skill_1);
-
-var skill_2 = HTMLskills.replace("%data%",bio.skills[1]);
-$('#skills').append(skill_2);
-
-var skill_3 = HTMLskills.replace("%data%",bio.skills[2]);
-$('#skills').append(skill_3);
-
-var skill_4 = HTMLskills.replace("%data%",bio.skills[3]);
-$('#skills').append(skill_4);
-
-
-
-function displayWork(){
-	for (i in work.jobs) {
-		$('#workExperience').append(HTMLworkStart);
-
-
-		var emp = HTMLworkEmployer.replace("%data%",work.jobs[i].employer);
-		var t = HTMLworkTitle.replace("%data%",work.jobs[i].title);
-		var empt = emp + t;
-		$('.work-entry:last').append(empt);
-
-
-		var date = HTMLworkDates.replace("%data%",work.jobs[i].dates);
-		$('.work-entry:last').append(date);
-
-		var des = HTMLworkDescription.replace("%data%",work.jobs[i].description);
-		$('.work-entry:last').append(des);
-	}
-}
-
-displayWork();
-displayWork();
-
-$(document).click(function(loc) {
-  // your code goes here
-  var x = loc.pageX;
-  var y = loc.pageY;
-  logClicks(x,y);
-});
-
-projects.display = function(){
-	for (var i in projects.projects){
-		$('#projects').append(HTMLprojectStart);
-
-		var project_title = HTMLprojectTitle.replace("%data%",projects.projects[i].title);
-		$('.project-entry:last').append(project_title);
-
-		var project_dates = HTMLprojectDates.replace("%data%",projects.projects[i].dates);
-		$('.project-entry:last').append(project_dates);
-
-		var project_description = HTMLprojectDescription.replace("%data%",projects.projects[i].description);
-		$('.project-entry:last').append(project_description);
-
-		var project_images = HTMLprojectImage.replace("%data%",projects.projects[i].images);
-		$('.project-entry:last').append(project_images);
-	}
-}
-
+work.display();
+education.display();
 projects.display();
+bio.display();
 
-
-$('#mapDiv').append(googleMap);
+// $("#main").append(internationalizeButton);
+$("#mapDiv").append(googleMap);
